@@ -29,7 +29,7 @@ Using ASP.NET MVC and nHibernate
  All rentals - admin's account view
  
  
-![Book_details](/docs/book-details.png)
+![Book_details](/docs/book_details.png)
 
 Book details - logged in reader's account view
  
@@ -50,4 +50,5 @@ Menu
  
  
 ![User_rentals](/docs/user_rentals.png)
+
  User rentals - logged in reader's account view
