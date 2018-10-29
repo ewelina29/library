@@ -25,22 +25,27 @@ Using ASP.NET MVC and nHibernate
 # Views
  
 ![Admin_rentals](/docs/admin_rentals.png)
+ 
  All rentals - admin's account view
  
  
-![Book_detais](/docs/book-details.png)
+![Book_details](/docs/book-details.png)
+
 Book details - logged in reader's account view
  
  
 ![Books_list](/docs/books_list.png)
+
 Books list - guest's or logged in user's acount view
  
  
 ![Cart](/docs/cart.png)
+
 Cart - logged in reader's account view
  
  
 ![Menu](/docs/menu.png)
+
 Menu
  
  
