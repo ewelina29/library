@@ -1,0 +1,97 @@
+﻿@model Biblioteka.Models.Book
+
+@{
+    ViewBag.Title = "AssignCopies";
+}
+
+
+
+<div>
+    <dov class="header-title">Assign new copies</dov>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            Author
+        </dt>
+
+        <dd>
+            @ViewBag.Author
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+    </dl>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    <hr />
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <p class="control-label col-md-2">  Number of new copies </p>
+            <div class="col-md-2">
+                <input name="numberOfCopies" class="form-control" type="number" width="100" />
+
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-2">
+                <input type="submit" value="Assign copies" class="btn default-button" />
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+       
+
+    </div>
+}
+@if (ViewBag.Ids != null)
+{
+    <h4 class="control-label">All assigned copies </h4>
+    <div style="display:flex;">
+        <div class="col-md-4" style="display:flex;">
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var id in ViewBag.Ids)
+                {
+                        <tr>
+                            <td>@id.Id</td>
+                            <td>@id.Status</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <div class="col-md-8" style="display:flex;"></div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "redirect-button" })
+</div>

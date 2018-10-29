@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Biblioteka.Models.Notice>
+
+@{
+    ViewBag.Title = "IndexAdmin";
+}
+
+<h2>All notices</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "redirect-button" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+
+        <td class="icon-td">
+            <a href="@Url.Action("Edit", "Notice", new {id = item.Id})">
+
+                <img src="~/images/edit.png" class="link-img" />
+            </a>
+        </td>
+
+        <td class="icon-td">
+            <a href="@Url.Action("Delete", "Notice", new {id = item.Id})">
+
+                <img src="~/images/remove.png" class="link-img" />
+            </a>
+        </td>
+
+    </tr>
+}
+
+</table>

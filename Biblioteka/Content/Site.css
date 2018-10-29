@@ -1,0 +1,269 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size:0.9vw;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+    .body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.main_color {
+    background-color: #338C60;
+    border-color: #ffffff;
+}
+
+.main {
+    height: 120px;
+}
+
+
+td {
+    padding-top: 20px;
+}
+
+
+.title-image {
+    vertical-align: central;
+    width: 20%;
+}
+
+.navbar-inverse {
+    background-color: #80CC95;
+    border-color: #ffffff;
+}
+
+
+.navbar-button {
+    color: #ffffff;
+}
+
+    .navbar-button:hover {
+        background-color: #EDEDED;
+    }
+
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.site_title {
+    height: auto;
+    padding: 10px;
+    width: 70%;
+    font-size: 200%;
+    color: #e9ebee;
+    font-family: "High Tower Text";
+    text-align: left;
+    margin: 0px;
+}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+    /* Style the buttons inside the tab */
+    div.tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: black;
+    background-color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: white;
+}
+
+
+
+.navbar-inverse .navbar-toggle {
+    background-color: transparent;
+}
+
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: transparent;
+    }
+
+.default-button {
+    background-color: #338C60;
+    color: white;
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+}
+
+
+.dropdown:hover {
+    background-color: #ffffff;
+}
+
+.nav.navbar-nav.navbar-right > li.dropdown.active.open > a,
+.nav.navbar-nav.navbar-right > li.dropdown.active.open > ul.dropdown-menu a:hover,
+.nav.navbar-nav.navbar-right > li.dropdown.open > a,
+.nav.navbar-nav.navbar-right > li.dropdown.open > ul.dropdown-menu a:hover {
+    color: #000000;
+    background-color: #EDEDED;
+}
+
+.nav.navbar-nav > li.dropdown.active.open > a,
+.nav.navbar-nav > li.dropdown.active.open > ul.dropdown-menu a:hover,
+.nav.navbar-nav > li.dropdown.open > a,
+.nav.navbar-nav > li.dropdown.open > ul.dropdown-menu a:hover {
+    color: #000000;
+    background-color: #EDEDED;
+}
+
+.notice-title {
+    font-size: 1.5vw;
+    border-bottom: 3px dotted #80CC95 ;
+    padding:10px;
+    font-family:'Bookman Old Style';
+}
+.notice-description {
+    font-size: 1vw;
+    padding: 10px;
+    font-family: 'Bookman Old Style';
+}
+
+#news-header{
+    text-align:center;
+    margin:0px;
+    padding-top:20px;
+}
+
+.notice-div {
+    background-color: #EDEDED;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius:25px;
+}
+
+.list-item{
+    padding:5px;
+}
+
+.header-title{
+    font-size:1.3vw;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.redirect-button {
+    color: #338C60;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    color: #ffffff;
+    background-color: #338C60;
+}
+
+.empty-data-table{
+    font-size: 20px;
+}
+
+.book-signature {
+    text-align: center;
+}
+
+.book-availability-img{
+    width:2.5vw;
+    height:2.5vw;
+}
+
+.link-img{
+    width:100%;
+    height:auto;
+    text-align:center;
+}
+
+.icon-td{
+    padding:5px!important;
+    width:2vw;
+}
+
+.small-table{
+    width:30vw;
+}
+}
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0; 
+    height: 1px;
+    border-top: 1px solid #eeeeee;
+}
+
+.notice-form {
+    max-width: 40vw;
+    width: 100%;
+    border-radius: 0.5vw;
+}

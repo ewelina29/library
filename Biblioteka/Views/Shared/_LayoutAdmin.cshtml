@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="">
+        <div class="main main_color ">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <table style="margin-left:10px;">
+                    <tr>
+                        <td>
+                            <img src="/images/red_book.png" alt="Sample Photo" width="80" height="80" />
+                        </td>
+                        <td>
+                            <h2 class="site_title">
+                                B&G LIBRARY
+                            </h2>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand navbar-button" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    <li class="navbar-button">@Html.ActionLink("Books", "Index", "Book")</li>
+                    <li class="navbar-button">@Html.ActionLink("Authors", "Index", "Author")</li>
+                    <li class="navbar-button">@Html.ActionLink("Users", "Index", "Account")</li>
+                    <li class="navbar-button">@Html.ActionLink("Notices", "IndexAdmin", "Notice")</li>
+                    <li class="navbar-button">@Html.ActionLink("Limits", "Edit", "Limit")</li>
+                    <li class="navbar-button">@Html.ActionLink("Notices", "IndexAdmin", "Notice")</li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                My Account
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Details", "Edit", "Account", new { id = Int32.Parse(this.User.Identity.GetUserId()) }, null)</li>
+                                <li>@Html.ActionLink("Delete", "Delete", "Account", new { id = Int32.Parse(this.User.Identity.GetUserId()) }, null)</li>
+                                <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

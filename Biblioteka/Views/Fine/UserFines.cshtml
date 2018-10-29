@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Biblioteka.ModelViews.FineCopyView>
+
+@{
+    ViewBag.Title = "UserFines";
+}
+<table class="col-md-12">
+    <tr>
+        <td class="col-md-2" style="margin:10px">
+            <ul class="nav nav-pills nav-stacked ">
+                <li><a class="redirect-button" href="/Reservation/UserReservations">Reservations</a></li>
+                <li><a class="redirect-button" href="/Rental/UserRentals">Rentals</a></li>
+                <li ><a class="redirect-button" href="/Pending/UserPendings">Pendings</a></li>
+                <li><a class="redirect-button" href="/Rental/History">History rentals</a></li>
+                <li class="active"><a class="redirect-button" href="/Fine/UserFines">Fines</a></li>
+
+            </ul>
+        </td>
+        <td class="col-md-10" style="margin:10px">
+            <h2>Your fines</h2>
+            @{
+                if (Model.Count() != 0)
+                {
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CopyId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CopyId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount) EUR
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+
+
+                            </tr>
+                        }
+
+                    </table>
+                }
+                else
+                {
+                    <hr />
+                    <p class="empty-data-table"> You don't have any fines</p>
+                }
+
+            }
+
+        </td>
+    </tr>
+</table>

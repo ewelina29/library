@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Biblioteka.ModelViews.FineCopyView>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All current fines</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CopyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CopyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+       <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "redirect-button" })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Recalculate all fines", "Index", "Fine", new { calculate = true }, new { @class = "btn default-button" })
+</p>

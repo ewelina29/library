@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Biblioteka.Models.Notice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-md-12">
+    <h2 id="news-header">NEWS</h2>
+</div>
+
+
+@foreach (var item in Model) {
+    <div class="col-md-12 notice-div">
+        <div class="col-md-12 notice-title" style="font-size:18px">
+            @Html.DisplayFor(modelItem => item.Title)
+            </div>
+        <div class="col-md-12 notice-description" style="font-size:15px">
+            @Html.DisplayFor(modelItem => item.Description)
+        </div>
+    </div>
+
+}
+

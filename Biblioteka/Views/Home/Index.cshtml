@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row jumbotron">
+      <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            Have you got account here? No?
+            Do you want borrow intresting books?
+            Not wait.
+            Register now.
+        </p>
+          <input  class="btn btn-default" type="button" value="Register" onclick="location.href='@Url.Action("Register", "Account")'" />
+
+    </div>
+    <div class="col-md-4">
+        <h2>Check book collection</h2>
+        <p>Lorem ipsum tra la la la la</p>
+        <input class="btn btn-default" type="button" value="Go to catalog" onclick="location.href='@Url.Action("Index", "Book")'" />
+    </div>
+ 
+</div>

@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Biblioteka.ModelViews.CopiesStatusesModelView>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/validateDates.js"></script>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <th>
+                @if (ViewBag.showReturnBtn)
+                {
+                <label class="radio"><input type="radio" name="deleted" checked value=false id="current">Current rentals</label>
+                <label class="radio"><input type="radio" name="deleted" value=true id="past">Past rentals</label>
+                }
+                else
+                {                
+                <label class="radio"><input type="radio" name="deleted" value=false id="current">Current rentals</label>
+                <label class="radio"><input type="radio" name="deleted"  checked value=true id="past">Past rentals</label>
+
+                }</th>
+
+            <th>
+                <input type="submit" value="Filter" class="btn default-button" style="margin:10px" />
+            </th>
+        </tr>
+    </table>
+}
+<p style="margin:30px"></p>
+
+<div class="header-title">@ViewBag.Info</div>
+<p style="margin:30px"></p>
+@{
+    if (Model.Count() != 0)
+    {
+
+        <table class="table" id="rentalsTable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CopyId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reader)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateFrom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTo)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CopyId)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Title, "Details/" + item.BookId, "Book", null, new { @class = "redirect-button" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reader)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateFrom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTo, new { id = "dateTo" })
+                    </td>
+                    @if (ViewBag.showReturnBtn) { 
+                    <td>
+                        @Html.ActionLink("Return", "Return", new { rentalId = item.Id }, new { @class = "redirect-button" })
+                    </td>
+                    }
+                </tr>
+            }
+
+
+
+        </table>
+    }
+    else
+    {
+        <hr />
+        <p class="empty-data-table"> There's no current rentals</p>
+    }
+}
+
+@if (ViewBag.ShowLateRentalButton != null)
+{
+    <p>
+        @Html.ActionLink("Send emails with warning about late rentals", "SendMails", "Mail", new { lateRental = true }, new { @class = "btn btn-danger" })
+    </p>
+}
+@if (ViewBag.ShowCloseToReturnRentalButton != null)
+{
+    <p>
+        @Html.ActionLink("Send emails with notification to return books in 3 days", "SendMails", "Mail", new { closeReturn = true }, new { @class = "btn btn-warning" })
+    </p>
+}
+

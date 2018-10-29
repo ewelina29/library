@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Biblioteka.ModelViews.BookIndexView>
+@using Biblioteka.Models.Identity;
+
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/togglableTabs.js"></script>
+
+<div class="header-title">All books</div>
+<p>
+    @{
+        if (@ViewBag.Role == UserRole.EMPLOYEE_ROLE)
+        {
+            @Html.ActionLink("Create New", "Create", null, new { @class = "redirect-button" })
+        }
+    }
+
+</p>
+
+<div class="tab">
+    <button class="tablinks" onclick="openSearching(event, 'AllSearch')">Searching</button>
+    <button class="tablinks" onclick="openSearching(event, 'TagsSearch')">Searching by tags</button>
+    <button id="up" class="tablinks navbar-right" disabled onclick="closeTab(event, 'up')">
+        <img src="~/images/up-arrow2.png" height="16" width="16" />
+    </button>
+</div>
+
+
+<div id="AllSearch" class="tabcontent">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <table>
+            <tr>
+                <th style="padding-left:10px">
+                    Title
+                </th>
+                <th style="padding-left:10px">
+                    Author
+                </th>
+                <th style="padding-left:10px">
+                    Category
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="text" name="titleText" value="" class="form-control" />
+                </th>
+                <th>
+                    <input type="text" name="authorText" value="" class="form-control" />
+                </th>
+                <th>
+                    <input type="text" name="categoryText" value="" class="form-control" />
+                </th>
+
+                <th>
+                    <input type="submit" value="Search" class="btn default-button" style="margin:10px" />
+                </th>
+            </tr>
+        </table>
+    }
+</div>
+
+<div id="TagsSearch" class="tabcontent">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <table>
+            <tr>
+                <th>
+                    Tags
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            <tr>
+                <th style="margin:10px">
+                    @Html.ListBox("Tags", ViewBag.Tagslist as MultiSelectList, new { @class = "form-control", @style = "width:300px; height:200px;", @multiple = "true" })
+                </th>
+                <th>
+                    <input type="submit" value="Search" class="btn default-button" style="margin:10px;" />
+                </th>
+            </tr>
+        </table>
+    }
+</div>
+
+
+<p style="margin:60px"></p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+
+            @{
+                if (@ViewBag.Role == UserRole.EMPLOYEE_ROLE)
+                {
+                    <td class="icon-td">
+                        <a href="@Url.Action("Details", "Book", new {id = item.Id})">
+
+                            <img src="~/images/details.png" class="link-img" />
+                        </a>
+                    </td>
+                    <td class="icon-td">
+                        <a href="@Url.Action("AssignCopies", "Book", new {id = item.Id})">
+
+                            <img src="~/images/add-books.png" class="link-img" />
+                        </a>
+                    </td>
+                    <td class="icon-td">
+                        <a href="@Url.Action("Delete", "Book", new {id = item.Id})">
+
+                            <img src="~/images/remove.png" class="link-img" />
+                        </a>
+                    </td>
+
+                }
+
+                else
+                {
+                    <td class="icon-td">
+                        <a href="@Url.Action("Details", "Book", new {id = item.Id})">
+
+                            <img src="~/images/details.png" class="link-img" />
+                        </a>
+                    </td>
+                }
+            }
+
+
+        </tr>
+                }
+
+</table>
+
+

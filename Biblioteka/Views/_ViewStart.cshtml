@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNet.Identity;
+@using Biblioteka.Models.Identity;
+@using Biblioteka.Models;
+@using NHibernate;
+@{
+    if (!this.User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+
+        var userId = Int32.Parse(User.Identity.GetUserId());
+        DatabaseContext database = new DatabaseContext();
+        ISession session = database.MakeSession();
+        var user = session.Get<User>(userId);
+        if (user.Role == UserRole.READER_ROLE) { Layout = "~/Views/Shared/_LayoutReader.cshtml"; }
+        else if (user.Role == UserRole.EMPLOYEE_ROLE) { Layout = "~/Views/Shared/_LayoutEmployee.cshtml"; }
+        else { Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+    }
+}

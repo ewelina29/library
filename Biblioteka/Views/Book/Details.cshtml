@@ -1,0 +1,178 @@
+﻿@using Microsoft.AspNet.Identity;
+@using Biblioteka.Models.Identity;
+@using Biblioteka.Models;
+@using NHibernate;
+@using Biblioteka.Enums
+@model Biblioteka.Models.Book
+
+<script src="~/Scripts/validationCart.js"></script>
+
+<div>
+    <div class="header-title">@Html.DisplayFor(model=> model.Title)</div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt class="list-item">
+            Author
+        </dt>
+
+        <dd class="list-item">
+            @ViewBag.Author
+        </dd>
+
+        <dt class="list-item">
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd class="list-item">
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt class="list-item">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd class="list-item">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        
+        <dt class="list-item">
+            Category
+        </dt>
+
+        <dd class="list-item">
+            @ViewBag.Category
+        </dd>
+
+        <dt class="list-item">
+            Tags
+        </dt>
+
+        <dd class="list-item">
+            @ViewBag.Tags
+        </dd>
+
+        <dt class="list-item">
+            @Html.DisplayNameFor(model => model.TableOfContents)
+        </dt>
+
+        <dd class="list-item">
+            
+            @using (Html.BeginForm())
+            {
+
+                if (Model.TableOfContents != "")
+                {
+                    <button class="btn default-button" value=1 type="submit" name="download">
+                        Download
+                    </button>
+                }
+                else
+                {
+                    <button class="btn .btn-default" value=1 type="submit" name="download" disabled>
+                        Download
+                    </button>
+                }
+            
+            }
+        </dd>
+
+    </dl>
+</div>
+
+<hr/>
+
+<div style="display:flex;">
+    <div class="col-md-4" style="display:flex;">
+        @using (Html.BeginForm())
+        {
+            if (ViewBag.CopiesCount != 0)
+            {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Signature</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var id in ViewBag.Ids)
+                    {
+                        <tr>
+                            <td class="book-signature">@id.Id</td>
+                            @if (id.Status == Status.IN_STOCK)
+                            {
+                                <td>
+                                    <img class="book-availability-img" src="~/images/book_free.png"/>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <img class="book-availability-img" src="~/images/book_rented.png"/>
+                                </td>
+                            }
+
+                            @if (!ViewBag.Added && @ViewBag.Role == UserRole.READER_ROLE)
+                            {
+                                if (id.Status == Status.IN_STOCK)
+                                {
+                                    <td>
+                                        <button class="btn btn-success" type="submit" name="cart" value="@id.Id">
+                                            <span class="glyphicon glyphicon-shopping-cart"></span>Add to cart
+                                        </button>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <button class="btn btn-warning" type="submit" name="queue" value="@id.Id">
+                                            <span class="glyphicon glyphicon-star-empty"></span>Add to queue
+                                        </button>
+
+
+                                    </td>
+
+
+
+                                }
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+            }
+        }
+    </div>
+    <div class="col-md-8" style="display:flex;"></div>
+</div>
+
+
+
+
+@{
+    if (@ViewBag.Role == UserRole.EMPLOYEE_ROLE)
+    {
+        <p>
+            @Html.ActionLink("Assign Copies", "AssignCopies", new { id = Model.Id }, new { @class = "redirect-button" }) |
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "redirect-button" })
+        </p>
+    }
+    else
+    {
+       <p>
+           @Html.ActionLink("Back to List", "Index", null, new { @class = "redirect-button" })
+       </p>           
+    }
+}
+
+
+
+
+
+
+
+
+

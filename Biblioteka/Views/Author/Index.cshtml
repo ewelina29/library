@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Biblioteka.Models.Author>
+@using Biblioteka.Models.Identity;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="header-title">All authors</div>
+
+@{
+    if (@ViewBag.Role == UserRole.EMPLOYEE_ROLE)
+    {
+        <p>
+            @Html.ActionLink("Create new", "Create", null, new { @class = "redirect-button" })
+        </p>
+    }
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearOfBirth)
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearOfBirth)
+            </td>
+
+                @{
+                    if (@ViewBag.Role == UserRole.EMPLOYEE_ROLE)
+                    {
+                    <td class="icon-td">
+                        <a href="@Url.Action("Edit", "Author", new {id = item.Id})">
+
+                            <img src="~/images/edit.png" class="link-img" />
+                        </a>
+                    </td>
+                    <td class="icon-td">
+                        <a href="@Url.Action("Details", "Author", new {id = item.Id})">
+
+                            <img src="~/images/details.png" class="link-img" />
+                        </a>
+                    </td>
+                    <td class="icon-td">
+                        <a href="@Url.Action("Delete", "Author", new {id = item.Id})">
+
+                            <img src="~/images/remove.png" class="link-img" />
+                        </a>
+                    </td>
+                    }
+
+                    else
+                    {
+                        <td class="icon-td">
+                            <a href="@Url.Action("Details", "Author", new {id = item.Id})">
+
+                                <img src="~/images/details.png" class="link-img" />
+                            </a>
+                        </td>
+                    }
+                }
+            </tr>
+                    }
+
+</table>
